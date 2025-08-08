@@ -226,18 +226,36 @@
   }
 
   function calculateScore() {
-    const gender = document.getElementById("gender").value;
-    const form = document.getElementById(gender + "Form");
-    if (!form) return;
+  const gender = document.getElementById("gender").value;
+  const form = document.getElementById(gender + "Form");
+  if (!form) return;
 
-    let total = 0;
-    for (let el of form.elements) {
-      if (el.tagName === 'SELECT') {
-        total += parseInt(el.value);
-      }
+  let total = 0;
+  for (let el of form.elements) {
+    if (el.tagName === 'SELECT') {
+      total += parseInt(el.value);
     }
-    document.getElementById("result").innerText = "총점: " + total + "점 / 100점 만점";
   }
+
+  // 등급 계산
+  let grade = '';
+  if (total === 100) {
+    grade = 'A';
+  } else if (total >= 90) {
+    grade = 'B';
+  } else if (total >= 80) {
+    grade = 'C';
+  } else if (total >= 70) {
+    grade = 'D';
+  } else if (total >= 60) {
+    grade = 'E';
+  } else {
+    grade = 'F';
+  }
+
+  document.getElementById("result").innerText = `총점: ${total}점 / 100점 만점\n등급: ${grade}`;
+}
+
 </script>
 
 </body>
