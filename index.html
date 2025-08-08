@@ -309,6 +309,13 @@
 
 <div class="result" id="result">총점: -</div>
 
+<!-- 여기에 넣으세요! -->
+<div id="averageInfo" style="display:none; text-align:center;">
+  <h2>결과가 50점이면 평균 입니다.</h2>
+  <img src="https://blog.kakaocdn.net/dna/ew02ax/btsPNOBfrdH/AAAAAAAAAAAAAAAAAAAAALOMJHoBlAIlZPFn2qupkUD_a4DmxUuXe-IDxBk5RY-e/img.gif?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=%2FdBGTSijBx1JSwauwpMc07wtNnM%3D" alt="GIF 이미지" style="max-width:220px; margin:1.2em auto;">
+</div>
+
+
 <script>
   function toggleForm() {
     const gender = document.getElementById("gender").value;
@@ -355,7 +362,11 @@
 
     document.getElementById("result").innerText = `총점: ${total}점 / 100점 만점\n등급: ${grade}`;
 
-    // 5초 후 리다이렉트
+
+    // 평균 문구 및 이미지 노출
+    document.getElementById("averageInfo").style.display = "block";
+    
+    // 10초 후 리다이렉트
     setTimeout(function() {
     window.location.href = "https://redchupa.com/entry/%EA%B2%B0%ED%98%BC-%EC%8B%9C%EC%9E%A5%EC%97%90%EC%84%9C-%EB%82%B4%EC%A0%90%EC%88%98%EB%8A%94-%EB%AA%87%EC%A0%90%EC%9D%BC%EA%B9%8C-%EA%B2%B0%ED%98%BC%EC%A0%95%EB%B3%B4%ED%9A%8C%EC%82%AC-%EC%A0%90%EC%88%98-%ED%85%8C%EC%8A%A4%ED%8A%B8";
     }, 10000);
@@ -365,8 +376,6 @@
 
 </script>
 
-<h2>결과가 50점이면 평균 입니다.</h2>
-<img src="https://blog.kakaocdn.net/dna/ew02ax/btsPNOBfrdH/AAAAAAAAAAAAAAAAAAAAALOMJHoBlAIlZPFn2qupkUD_a4DmxUuXe-IDxBk5RY-e/img.gif?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=%2FdBGTSijBx1JSwauwpMc07wtNnM%3D" alt="GIF 이미지">
 
 <!-- PAYPAL Code Start-->
 <form action="https://www.paypal.com/ncp/payment/HG9KNC262PLAC" method="post" target="_blank">
