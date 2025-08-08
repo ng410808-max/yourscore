@@ -3,19 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <title>결혼정보회사 점수 계산기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: 'Noto Sans KR', sans-serif; max-width: 800px; margin: auto; padding: 20px; line-height: 1.6; }
-    h1 { text-align: center; color: #2c3e50; }
-    select, button { width: 100%; padding: 10px; margin-top: 10px; }
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+      background: #fafafb;
+      color: #222;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 2em;
+      margin-bottom: 1.2em;
+    }
+    label {
+      display: block;
+      font-weight: 500;
+      margin-top: 1.5em;
+      margin-bottom: 0.3em;
+      font-size: 1.08em;
+    }
+    select, button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 0.6em;
+      background: #fff;
+      margin-top: 0.1em;
+      margin-bottom: 0.2em;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      appearance: none;
+    }
+    select:focus, button:focus {
+      outline: 2px solid #6aa5ff;
+      outline-offset: 2px;
+    }
+    button {
+      background: #e67e22;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-top: 2em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover, button:active {
+      background: #ca7117;
+    }
     .hidden { display: none; }
-    .result { margin-top: 20px; font-size: 18px; font-weight: bold; color: #e67e22; }
+    .result {
+      margin-top: 2em;
+      font-size: 1.25em;
+      font-weight: bold;
+      color: #e67e22;
+      text-align: center;
+      white-space: pre-line;
+    }
+    img {
+      width: 100%;
+      max-width: 340px;
+      display: block;
+      margin: 1.5em auto 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(30,40,40,0.06);
+    }
+    h2 {
+      margin-top: 2.5em;
+      text-align: center;
+      font-size: 1.13em;
+      color: #4682B4;
+      font-weight: 500;
+    }
+    /* PAYPAL 버튼 */
+    .pp-HG9KNC262PLAC {
+      text-align: center;
+      border: none;
+      border-radius: 0.5em;
+      min-width: 10em;
+      padding: 0 1.5em;
+      height: 2.5em;
+      font-weight: bold;
+      background-color: #FFD140;
+      color: #000;
+      font-family: inherit;
+      font-size: 1em;
+      line-height: 1.3em;
+      cursor: pointer;
+      margin: 2em auto 0 auto;
+      display: block;
+      box-shadow: 0 2px 8px rgba(170,140,30,0.07);
+    }
+    /* 반응형 모바일 */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.3em;
+      }
+      select, button {
+        font-size: 1em;
+        padding: 10px;
+      }
+      img {
+        max-width: 95vw;
+      }
+      h2 {
+        font-size: 1em;
+      }
+    }
   </style>
 </head>
 <body>
 
 <h1>결혼정보회사 점수 계산기</h1>
 
-<label>성별 선택</label>
+<label for="gender">성별 선택</label>
 <select id="gender" onchange="toggleForm()">
   <option value="">-- 성별 선택 --</option>
   <option value="male">남자</option>
@@ -23,9 +138,8 @@
 </select>
 
 <!-- 남자용 폼 -->
- <br>
-<form id="maleForm" class="hidden">
-  <label style="display:block; margin-top:3em;">학력 (대학원 졸업은 한등급 위 선택)</label>
+<form id="maleForm" class="hidden" autocomplete="off">
+  <label>학력 (대학원 졸업은 한등급 위 선택)</label>
   <select name="education">
     <option value="10">SKY</option>
     <option value="8">서강대, 성균관대 등</option>
@@ -34,9 +148,7 @@
     <option value="2">지방대/전문대</option>
     <option value="0">고졸 이하</option>
   </select>
-
-<br>
-  <label style="display:block; margin-top:3em;">직업 안정성</label>
+  <label>직업 안정성</label>
   <select name="job">
     <option value="5">공무원, 교사, 군인, 판검사</option>
     <option value="4">전문직, 공기업</option>
@@ -45,9 +157,7 @@
     <option value="1">비정규직</option>
     <option value="0">무직</option>
   </select>
-
-  <br>
-  <label style="display:block; margin-top:3em;">연소득</label>
+  <label>연소득</label>
   <select name="income">
     <option value="30">5억 이상</option>
     <option value="27">2~5억</option>
@@ -60,9 +170,7 @@
     <option value="2">2천~3천</option>
     <option value="0">2천 미만</option>
   </select>
-
-  <br>
-  <label style="display:block; margin-top:3em;">외모</label>
+  <label>외모</label>
   <select name="appearance">
     <option value="15">잘생겼다는 말을 자주 듣는다 + 키 큰편</option>
     <option value="12">얼굴 평균 이상 + 키 큰편</option>
@@ -70,9 +178,7 @@
     <option value="6">얼굴 평균 이하 + 키 평균 이하</option>
     <option value="3">외모가 전부는 아니잖아라는 말을 들어본적 있다</option>
   </select>
-
-  <br>
-  <label style="display:block; margin-top:3em;">나이</label>
+  <label>나이</label>
   <select name="age">
     <option value="5">20~29</option>
     <option value="4">30~34</option>
@@ -80,9 +186,7 @@
     <option value="2">40~44</option>
     <option value="1">45~49</option>
   </select>
-
-  <br>
-  <label style="display:block; margin-top:3em;">몸매 골격근량</label>
+  <label>몸매 골격근량</label>
   <select name="body">
     <option value="15">49% 이상</option>
     <option value="11">45~48%</option>
@@ -90,9 +194,7 @@
     <option value="3">36~39%</option>
     <option value="0">35% 미만</option>
   </select>
-
-  <br>
-  <label style="display:block; margin-top:3em;">부모 자산</label>
+  <label>부모 자산</label>
   <select name="asset">
     <option value="5">9.5억 이상</option>
     <option value="4">4.8억 ~ 9.5억</option>
@@ -100,9 +202,7 @@
     <option value="2">9천 ~ 2.5억</option>
     <option value="1">9천 미만</option>
   </select>
-
-  <br>
-  <label style="display:block; margin-top:3em;">성격/인성</label>
+  <label>성격/인성</label>
   <select name="personality">
     <option value="10">고맙다는 말을 자주 듣는다</option>
     <option value="8">성격 좋다는 말을 자주 듣는다</option>
@@ -110,9 +210,7 @@
     <option value="4">성격이 안맞는다는 말을 가끔 듣는다</option>
     <option value="2">성격이 안맞는다는 말을 자주 듣는다</option>
   </select>
-
-  <br>
-  <label style="display:block; margin-top:3em;">건강/생활습관</label>
+  <label>건강/생활습관</label>
   <select name="health">
     <option value="5">비흡연 & 주5회이상 운동 & 술 안함</option>
     <option value="4">비흡연 & 주3회이상 운동 & 술 가끔함</option>
@@ -124,9 +222,8 @@
 </form>
 
 <!-- 여자용 폼 -->
-<br>
-<form id="femaleForm" class="hidden">
-  <label style="display:block; margin-top:3em;">학력</label>
+<form id="femaleForm" class="hidden" autocomplete="off">
+  <label>학력</label>
   <select name="education">
     <option value="10">SKY</option>
     <option value="8">서강대, 성균관대 등</option>
@@ -135,8 +232,7 @@
     <option value="2">지방대/전문대</option>
     <option value="0">고졸 이하</option>
   </select>
-<br>
-  <label style="display:block; margin-top:3em;">직업 안정성</label>
+  <label>직업 안정성</label>
   <select name="job">
     <option value="5">공무원, 교사, 군인, 판검사</option>
     <option value="4">전문직, 공기업</option>
@@ -145,8 +241,7 @@
     <option value="1">비정규직</option>
     <option value="0">무직</option>
   </select>
-<br>
-  <label style="display:block; margin-top:3em;">연소득</label>
+  <label>연소득</label>
   <select name="income">
     <option value="20">5억 이상</option>
     <option value="19">2~5억</option>
@@ -159,8 +254,7 @@
     <option value="3">2천~3천</option>
     <option value="1">2천 미만</option>
   </select>
-<br>
-  <label style="display:block; margin-top:3em;">외모</label>
+  <label>외모</label>
   <select name="appearance">
     <option value="20">예쁘다는 말을 자주 듣는다 + 키 평균 이상</option>
     <option value="15">얼굴 평균 이상 + 키 평균 이상</option>
@@ -168,8 +262,7 @@
     <option value="5">평균 이하  + 키 평균 이하 </option>
     <option value="0">외모가 전부는 아니잖아라는 말을 들어본적 있다</option>
   </select>
-<br>
-  <label style="display:block; margin-top:3em;">나이</label>
+  <label>나이</label>
   <select name="age">
     <option value="10">20~24</option>
     <option value="8">25~29</option>
@@ -177,8 +270,7 @@
     <option value="4">35~39</option>
     <option value="2">40~</option>
   </select>
-<br>
-  <label style="display:block; margin-top:3em;">몸매 체지방률</label>
+  <label>몸매 체지방률</label>
   <select name="body">
     <option value="15">10~13%  +  D 이상</option>
     <option value="11">14~20%  +  C 이상</option>
@@ -186,8 +278,7 @@
     <option value="3">25~31%   +  A 이상</option>
     <option value="0">32% 이상 +  A 이상</option>
   </select>
-<br>
-  <label style="display:block; margin-top:3em;">부모 자산</label>
+  <label>부모 자산</label>
   <select name="asset">
     <option value="5">9.5억 이상</option>
     <option value="4">4.8억 ~ 9.5억</option>
@@ -195,8 +286,7 @@
     <option value="2">9천 ~ 2.5억</option>
     <option value="1">9천 미만</option>
   </select>
-<br>
-  <label style="display:block; margin-top:3em;">성격/인성</label>
+  <label>성격/인성</label>
   <select name="personality">
     <option value="10">고맙다는 말을 자주 듣는다</option>
     <option value="8">성격 좋다는 말을 자주 듣는다</option>
@@ -204,8 +294,7 @@
     <option value="4">성격이 안맞는다는 말을 가끔 듣는다</option>
     <option value="2">성격이 안맞는다는 말을 자주 듣는다</option>
   </select>
-<br>
-  <label style="display:block; margin-top:3em;">건강/생활습관</label>
+  <label>건강/생활습관</label>
   <select name="health">
     <option value="5">비흡연 & 주5회이상 운동 & 술 안함</option>
     <option value="4">비흡연 & 주3회이상 운동 & 술 가끔함</option>
@@ -215,7 +304,6 @@
     <option value="0">몸이 자주 아픔</option>
   </select>
 </form>
-
 
 <button onclick="calculateScore()">점수 계산하기</button>
 
@@ -236,62 +324,47 @@
   }
 
   function calculateScore() {
-  const gender = document.getElementById("gender").value;
-  const form = document.getElementById(gender + "Form");
-  if (!form) return;
+    const gender = document.getElementById("gender").value;
+    const form = document.getElementById(gender + "Form");
+    if (!form) return;
 
-  let total = 0;
-  for (let el of form.elements) {
-    if (el.tagName === 'SELECT') {
-      total += parseInt(el.value);
+    let total = 0;
+    for (let el of form.elements) {
+      if (el.tagName === 'SELECT') {
+        total += parseInt(el.value);
+      }
     }
+
+    // 등급 계산
+    let grade = '';
+    if (total === 100) {
+      grade = 'S';
+    } else if (total >= 90) {
+      grade = 'A';
+    } else if (total >= 80) {
+      grade = 'B';
+    } else if (total >= 70) {
+      grade = 'C';
+    } else if (total >= 60) {
+      grade = 'D';
+    } else if (total >= 50) {
+      grade = 'E';
+    } else {
+      grade = 'F';
+    }
+
+    document.getElementById("result").innerText = `총점: ${total}점 / 100점 만점\n등급: ${grade}`;
   }
-
-  // 등급 계산
-  let grade = '';
-  if (total === 100) {
-    grade = 'A';
-  } else if (total >= 90) {
-    grade = 'B';
-  } else if (total >= 80) {
-    grade = 'C';
-  } else if (total >= 70) {
-    grade = 'D';
-  } else if (total >= 60) {
-    grade = 'E';
-  } else {
-    grade = 'F';
-  }
-
-  document.getElementById("result").innerText = `총점: ${total}점 / 100점 만점\n등급: ${grade}`;
-}
-
 </script>
 
-<div style="margin-top: 60px;"></div>
-<div style="margin-top: 60px;"></div>
-<div style="margin-top: 60px;"></div>
-<div style="margin-top: 60px;"></div>
-<div style="margin-top: 60px;"></div>
-
-
-
 <h2>결과가 50점이면 평균 입니다.</h2>
-<img src="https://blog.kakaocdn.net/dna/ew02ax/btsPNOBfrdH/AAAAAAAAAAAAAAAAAAAAALOMJHoBlAIlZPFn2qupkUD_a4DmxUuXe-IDxBk5RY-e/img.gif?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=%2FdBGTSijBx1JSwauwpMc07wtNnM%3D" alt="GIF 이미지" width="400">
+<img src="https://blog.kakaocdn.net/dna/ew02ax/btsPNOBfrdH/AAAAAAAAAAAAAAAAAAAAALOMJHoBlAIlZPFn2qupkUD_a4DmxUuXe-IDxBk5RY-e/img.gif?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=%2FdBGTSijBx1JSwauwpMc07wtNnM%3D" alt="GIF 이미지">
 
-<div style="margin-top: 60px;"></div>
-<div style="margin-top: 60px;"></div>
-<div style="margin-top: 60px;"></div>
-<div style="margin-top: 60px;"></div>
-<div style="margin-top: 60px;"></div>
-
-<!-- 여기서부터 PAYPAL Code Start-->
-<style>.pp-HG9KNC262PLAC{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
-<form action="https://www.paypal.com/ncp/payment/HG9KNC262PLAC" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+<!-- PAYPAL Code Start-->
+<form action="https://www.paypal.com/ncp/payment/HG9KNC262PLAC" method="post" target="_blank">
   <input class="pp-HG9KNC262PLAC" type="submit" value="If you enjoyed this, Click" />
 </form>
-<!-- 여기까지가 PAYPAL Code END -->
-
+<!-- PAYPAL Code End -->
 
 </body>
 </html>
